@@ -74,10 +74,10 @@ const handleNavClick = (e) => {
         <div className="max-w-350 w-full mx-auto px-6 py-3">
           <div className="flex justify-between items-center w-full transition-all duration-500 ease-in-out">
 
-            <Link><img className="w-14" src={logo} alt="" /></Link>
+            <Link to="/"><img className="w-14" src={logo} alt="" /></Link>
 
             <div className="lg:flex hidden gap-10 items-center">
-              <ul className="flex gap-6 text-black text-[17px] font-semibold font-inter italic">
+              <ul className="flex gap-6 text-white text-[17px] font-semibold font-inter italic">
                 {navLinks}
               </ul>
               <Link className="btn rounded-lg bg-red-500 border-none flex gap-4 text-lg py-4 px-6 font-exo hover:rounded-3xl transition-all duration-500 hover:bg-black">Sign In</Link>
@@ -101,9 +101,7 @@ const handleNavClick = (e) => {
         aria-hidden={!sidebarOpen}
       >
         <div className="flex text-black justify-between items-center">
-          <h3 className="text-3xl font-normal font-marker">
-            Elite Arena
-          </h3>
+          <h3 className="text-3xl font-marker bg-linear-to-b from-black to-[#FF02CB] bg-clip-text text-transparent">Elite Arena</h3>
           <button
             aria-label="Close"
             onClick={() => setSidebarOpen(false)}

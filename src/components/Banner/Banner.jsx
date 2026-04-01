@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { FaArrowRight } from "react-icons/fa";
-import bg from "../../assets/images/bg.webp"
+import bg from "../../assets/images/bg.png"
 
 const Banner = () => {
     return (
