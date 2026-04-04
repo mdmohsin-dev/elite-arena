@@ -11,6 +11,27 @@
   --font-inter: 'Inter', sans-serif;
 }
 
-.active{
-  background-color: #FF02CB;padding: 6px 16px;border-radius: 18px;color: white;box-sizing: border-box;
+.active {
+  background-color: #FF02CB;
+  padding: 6px 16px;
+  border-radius: 18px;
+  color: white;
+  box-sizing: border-box;
+}
+
+.swiper-button-next {
+  right: -30px !important;
+}
+
+.swiper-button-disabled{
+  background-color: transparent;
+  border: 1px solid #FF02CB;
+  color: #FF02CB;
+}
+
+.swiper-wrapper {
+  align-items: stretch !important;
+}
+.swiper-slide {
+  height: auto !important;
 }

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "role": "UI/UX Designer",
+    "image": "https://i.pravatar.cc/150?img=8",
+    "review": "Working with this team was a truly smooth and enjoyable journey. Their creative thinking and strong design skills really stood out. They delivered tasks on schedule and always communicated clearly. I highly recommend them for anyone needing reliable and modern design solutions."
+  },
+  {
+    "id": 2,
+    "name": "Sarah Williams",
+    "role": "Frontend Developer",
+    "image": "https://i.pravatar.cc/150?img=2",
+    "review": "Collaborating with this team felt easy and very well organized throughout. Their coding standards and attention to structure were impressive. They met deadlines consistently and shared updates regularly. I strongly suggest them for projects requiring clean and efficient frontend development."
+  },
+  {
+    "id": 3,
+    "name": "Michael Brown",
+    "role": "Product Manager",
+    "image": "https://i.pravatar.cc/150?img=12",
+    "review": "This team demonstrated excellent understanding of both user needs and business goals. Their decisions were thoughtful and aligned with product vision. Delivery was timely and communication stayed clear always. I recommend them for building meaningful and user focused digital"
+  },
+  {
+    "id": 4,
+    "name": "Emily Johnson",
+    "role": "Graphic Designer",
+    "image": "https://i.pravatar.cc/150?img=4",
+    "review": "The collaboration experience with this team was creative and highly productive. Their visual sense and detail orientation were outstanding. They completed tasks on time and responded quickly always. I would recommend them for anyone looking for fresh and impactful graphic design services."
+  },
+  {
+    "id": 5,
+    "name": "David Lee",
+    "role": "Software Engineer",
+    "image": "https://i.pravatar.cc/150?img=5",
+    "review": "Working alongside this team was efficient and technically very satisfying. Their problem solving skills and coding approach were impressive. They delivered features on time and kept communication smooth. I highly recommend them for building scalable and maintainable software solutions."
+  }
+]

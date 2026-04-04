@@ -1,0 +1,73 @@
+[
+  {
+    "id": 1,
+    "court_name": "Badminton Court",
+    "slots": [
+      "6:00 PM - 7:00 PM",
+      "7:00 PM - 8:00 PM",
+      "8:00 PM - 9:00 PM"
+    ],
+    "image": "https://i.ibb.co.com/CK22KdPJ/badminton.jpg",
+    "price": 500
+  },
+  {
+    "id": 5,
+    "court_name": "Squash Court",
+    "slots": [
+      "6:00 PM - 7:00 PM",
+      "7:00 PM - 8:00 PM",
+      "8:00 PM - 9:00 PM"
+    ],
+    "image": "https://i.ibb.co.com/WNpdg3Bq/1000-F-1193580740-Jy1-WBq5q-Bwe8b-Z7-Wm-Djods-Jj-OQaq-MY3-C.jpg",
+    "price": 1200
+  },
+  {
+    "id": 2,
+    "court_name": "Football Turf",
+    "slot": "7:00 AM - 8:00 AM",
+    "image": "https://i.ibb.co.com/MDS6HXMS/mobs2.jpg",
+    "price": 1300
+  },
+  {
+    "id": 3,
+    "court_name": "Cricket Ground",
+    "slot": "8:00 AM - 10:00 AM",
+    "image": "https://i.ibb.co.com/wrMgTBxP/44105-1521466506-800.webp",
+    "price": 2500
+  },
+  {
+    "id": 4,
+    "court_name": "Cricket Ground 2",
+    "slot": "4:00 PM - 6:00 PM",
+    "image": "https://i.ibb.co/cricket2.jpg",
+    "price": 2700
+  },
+  {
+    "id": 6,
+    "court_name": "Badminton Court B",
+    "slot": "7:00 PM - 8:00 PM",
+    "image": "https://i.ibb.co/badminton2.jpg",
+    "price": 550
+  },
+  {
+    "id": 7,
+    "court_name": "Tennis Court",
+    "slot": "5:00 PM - 6:00 PM",
+    "image": "https://i.ibb.co.com/gFPZTrZb/1000-F-213955221-Qpf-YNr9rx56g-YQSf-Hc-LJDqx-DQR6d-D9f-U.jpg",
+    "price": 900
+  },
+  {
+    "id": 8,
+    "court_name": "Basketball Court",
+    "slot": "6:00 PM - 7:30 PM",
+    "image": "https://i.ibb.co.com/TBpN2GvT/download.jpg",
+    "price": 800
+  },
+  {
+    "id": 9,
+    "court_name": "Futsal Indoor Court",
+    "slot": "8:00 PM - 9:00 PM",
+    "image": "https://i.ibb.co/futsal1.jpg",
+    "price": 1500
+  }
+]

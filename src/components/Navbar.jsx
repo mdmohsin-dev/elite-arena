@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { Link, NavLink } from "react-router";
-import logo from "../../assets/images/logo.png"
+import logo from "../assets/images/logo.png"
 
 export default function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);

@@ -1,12 +1,11 @@
 import { Link } from "react-router";
-import logo from "../../assets/images/logo.png"
+import logo from "../assets/images/logo.png"
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
-import { TbXxx } from "react-icons/tb";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
     return (
-        <footer className="bg-[#F7DD72] pt-14 pb-10 px-6">
+        <footer className="bg-[#F7DD72] lg:pt-20 md:pt-14 pt-10 pb-10 px-6">
             <div className="max-w-350 mx-auto">
                 <div className="flex flex-col lg:flex-row justify-between xl:gap-28 lg:gap-20 gap-14 items-start">
                     <div className="lg:w-1/3 md:w-full">
