@@ -1,12 +1,19 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/images/logo.png"
+import { AuthContext } from "../providers/AuthProvider";
+import userLogo from "../assets/images/user.png"
+import Swal from "sweetalert2";
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const sidebarRef = useRef(null);
+
+  const { user, logout } = useContext(AuthContext)
+  console.log(user)
 
   const navLinks = <>
     <li><NavLink to="/">Home</NavLink></li>
@@ -14,11 +21,35 @@ export default function Navbar() {
   </>
 
 
-const handleNavClick = (e) => {
-  if (e.target.closest("a")) {
-    setSidebarOpen(false);
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to logout",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Logged out!",
+          text: "You have been successfully logged out.",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false
+        });
+        logout()
+      }
+    });
   }
-};
+
+
+  const handleNavClick = (e) => {
+    if (e.target.closest("a")) {
+      setSidebarOpen(false);
+    }
+  };
 
   // Frosted glass after scroll
   useEffect(() => {
@@ -76,24 +107,54 @@ const handleNavClick = (e) => {
 
             <Link to="/"><img className="w-14" src={logo} alt="" /></Link>
 
-            <div className="lg:flex hidden gap-10 items-center">
-              <ul className="flex gap-6 text-white text-[17px] font-semibold font-inter italic">
+            <div className="flex gap-10 items-center">
+              <ul className="lg:flex hidden gap-6 text-white text-[17px] font-semibold font-inter italic">
                 {navLinks}
               </ul>
-              <Link className="btn rounded-lg bg-red-500 border-none flex gap-4 text-lg py-4 px-6 font-exo hover:rounded-3xl transition-all duration-500 hover:bg-black">Sign In</Link>
-            </div>
 
-            <button
-              className="flex lg:hidden"
-              aria-label="Open"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <IoIosMenu size={34} color="#FF02CB"></IoIosMenu>
-            </button>
+              <div className="flex items-center gap-4">
+                <div>
+                  {
+                    user ?
+                      <div className="relative">
+                        <img
+                          onClick={() => setOpen(!open)}
+                          className="w-12 h-12 rounded-full border cursor-pointer"
+                          src={user?.photoURL || userLogo}
+                          alt=""
+                        />
+
+                        {open && (
+                          <div className="absolute right-1 top-14 w-52 bg-white text-black p-4 shadow rounded-md">
+                            <h3 className="text-center text-xl font-semibold">{user.displayName}</h3>
+                            <Link className="btn bg-[#FF02CB] mt-3 w-full border-none" to="/dashboard">Dashobard</Link>
+                            <button onClick={handleLogout}
+                              className="btn w-full mt-3 bg-red-500 border-none">Logout</button>
+                          </div>
+                        )}
+                      </div>
+
+                      :
+
+                      <Link to="/login"
+                        className="hidden btn rounded-lg bg-red-500 border-none lg:flex gap-4 text-lg py-4 px-6 font-exo hover:rounded-3xl transition-all duration-500 hover:bg-black">Sign In</Link>
+                  }
+                </div>
+
+                <button
+                  className="flex lg:hidden"
+                  aria-label="Open"
+                  onClick={() => setSidebarOpen(true)}
+                >
+                  <IoIosMenu size={34} color="#FF02CB"></IoIosMenu>
+                </button>
+              </div>
+
+            </div>
 
           </div>
         </div>
-      </nav>
+      </nav >
 
       <aside
         ref={sidebarRef}
@@ -111,16 +172,19 @@ const handleNavClick = (e) => {
         </div>
 
         <ul onClick={handleNavClick}
-        className="flex flex-col gap-6 text-black text-xl font-semibold pt-6">
+          className="flex flex-col gap-6 text-black text-xl font-semibold pt-6">
           {navLinks}
         </ul>
 
         <div>
-          <button
-            onClick={() => setSidebarOpen(false)}
-          >
-            <Link className="absolute bottom-4 btn bg-red-500 border-none flex gap-4 text-lg py-4 px-6 font-exo hover:rounded-3xl transition-all duration-500 hover:bg-black">Sign In</Link>
-          </button>
+          {
+            !user &&
+            <button
+              onClick={() => setSidebarOpen(false)}
+            >
+              <Link to="/login" className="absolute bottom-4 btn bg-red-500 border-none flex gap-4 text-lg py-4 px-6 font-exo hover:rounded-3xl transition-all duration-500 hover:bg-black">Sign In</Link>
+            </button>
+          }
         </div>
       </aside>
     </>

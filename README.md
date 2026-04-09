@@ -1,16 +1,36 @@
-# React + Vite
+# 🏟️ Elite Arena
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Elite Arena is a modern sports club booking platform where users can easily reserve courts based on time slots. The system provides a seamless experience for both users and admins with secure authentication and interactive dashboards.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🔐 User Authentication (Login required)
+- 🧑‍💼 Role-based Dashboard (Admin & User)
+- 📅 Time-based Court Booking System
+- 💳 Dynamic Pricing based on slot duration
+- 📖 View Booking History
+- ❌ Cancel Bookings anytime
+- 🛠️ Admin Control Panel
+  - Manage courts
+  - Monitor bookings
+- ⚡ Fast and responsive UI
 
-## React Compiler
+## 🖥️ User Flow
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. User signs up / logs in
+2. Browse available sports courts
+3. Select preferred time slot
+4. Book court with pricing shown
+5. Manage bookings from dashboard
 
-## Expanding the ESLint configuration
+## 🧰 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- JavaScript
+- React
+- Tailwind CSS
+- Firebase (Authentication)
+- LocalStorage (State Persistence)
+
+## 🌐 Live Demo
+
+🔗 https://your-live-link.com

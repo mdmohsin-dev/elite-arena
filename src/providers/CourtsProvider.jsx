@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { getCourt } from "../utility/addToDb";
 
 export const CourtsContext = createContext([])
 
@@ -11,6 +12,8 @@ const CourtsProvider = ({ children }) => {
     const [selectedCourt, setSelectedCourt] = useState(null)
     const [selectedSlot, setSelectedSlot] = useState("");
     const [reviews, setReviews] = useState([])
+    const [selectDate, setSelectDate] = useState("")
+    const [bookings, setBookings] = useState([])
 
     useEffect(() => {
         fetch("/courts.json")
@@ -24,15 +27,24 @@ const CourtsProvider = ({ children }) => {
             .then(data => setReviews(data))
     }, [])
 
+    useEffect(() => {
+        const data = getCourt()
+        setBookings(data)
+    }, [])
+
     const value = {
         courts,
         reviews,
         showModal,
         setShowModal,
         selectedSlot,
+        setSelectDate,
+        selectDate,
         selectedCourt,
         setSelectedSlot,
-        setSelectedCourt
+        setSelectedCourt,
+        bookings,
+        setBookings
     }
 
     return (

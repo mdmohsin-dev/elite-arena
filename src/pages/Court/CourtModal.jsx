@@ -1,9 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CourtsContext } from '../../providers/CourtsProvider';
+import { Bounce, toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import { saveCourt } from '../../utility/addToDb';
+import { useNavigate } from 'react-router';
 
 const CourtModal = () => {
 
-    const { showModal, setShowModal, selectedCourt, courts, selectedSlot } = useContext(CourtsContext)
+    const { showModal, setShowModal, selectedCourt, courts, selectedSlot, setSelectDate } = useContext(CourtsContext)
     console.log(selectedSlot)
 
     const findSelectedCourt = courts.find(court => court.id === selectedCourt)
@@ -11,6 +15,50 @@ const CourtModal = () => {
     if (!findSelectedCourt) return null;
 
     const { court_name, price } = findSelectedCourt
+
+    const [date, setDate] = useState("")
+    const navigate = useNavigate()
+
+    const bookingData = {
+        id: findSelectedCourt.id,
+        slot: selectedSlot,
+        date: date,
+        bookedAt: new Date().toISOString(),
+        status: 'pending'
+    }
+
+
+    const handleConfirmBooking = async () => {
+        if (!date) {
+            toast.error('Choose a date', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            return
+        }
+
+        saveCourt(bookingData)
+
+
+      await  Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        setShowModal(false)
+        setSelectDate(date)
+        setDate("")
+        navigate("/dashboard/bookings")
+    }
 
     return (
         <>
@@ -41,22 +89,20 @@ const CourtModal = () => {
                         </div>
                         <div className='text-black flex flex-col gap-2'>
                             <label htmlFor="" className='text-lg font-semibold'>Date</label>
-                            <input type="date" className="border border-pink-300 input w-full text-lg bg-white text-black" />
+                            <input onChange={(e) => { setDate(e.target.value) }}
+                                type="date" className="border border-pink-300 input w-full text-lg bg-white text-black" />
                         </div>
 
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setShowModal(false)}
-                                className="flex-1 py-3 rounded-xl border border-gray-300 text-gray-700"
+                                className="cursor-pointer flex-1 py-3 rounded-xl border border-gray-300 text-gray-700"
                             >
                                 Cancel
                             </button>
                             <button
-                                onClick={() => {
-                                    setShowModal(false);
-                                    alert('Booking confirmed!');
-                                }}
-                                className="flex-1 py-3 rounded-xl bg-red-500 text-white font-medium"
+                                onClick={handleConfirmBooking}
+                                className="flex-1 cursor-pointer py-3 rounded-xl bg-red-500 text-white font-medium"
                             >
                                 Confirm booking
                             </button>
