@@ -1,13 +1,34 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock, FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router';
 import GoogleLogin from '../../components/GoogleLogin';
+import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const { createUser, updateUser } = useContext(AuthContext)
+
+    const { handleSubmit, register, watch } = useForm()
+
+    const onSubmit = (data) => {
+        const { name, email, password, confirmPassword } = data
+
+        createUser(email, password)
+            .then(async result => {
+                console.log(result.user)
+                await updateUser(name)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    const password = watch("password")
 
     return (
         <div className="min-h-screen bg-linear-to-t from-black text-white flex items-center justify-center">
@@ -29,7 +50,8 @@ const SignUp = () => {
                         <h2 className="text-2xl md:text-4xl font-bold text-gray-800 pt-4 font-exo">Create Account</h2>
                     </div>
 
-                    <form className="space-y-4">
+                    <form onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-4">
                         <div>
                             <label className="text-sm md:text-lg font-medium text-gray-700 flex items-center gap-2">
                                 <FaEnvelope className="text-[#FF02CB] text-lg" />
@@ -37,7 +59,7 @@ const SignUp = () => {
                             </label>
                             <input
                                 type="text"
-
+                                {...register('name')}
                                 className="mt-1 w-full p-3 border border-gray-300 rounded-xl focus:bg-black text-black focus:text-white focus:outline-none focus:ring-2 focus:ring-[#FF02CB]"
                                 placeholder="you@example.com"
                                 required
@@ -50,7 +72,7 @@ const SignUp = () => {
                             </label>
                             <input
                                 type="email"
-
+                                {...register('email')}
                                 className="mt-1 w-full p-3 border border-gray-300 rounded-xl focus:bg-black text-black focus:text-white focus:outline-none focus:ring-2 focus:ring-[#FF02CB]"
                                 placeholder="you@example.com"
                                 required
@@ -67,6 +89,7 @@ const SignUp = () => {
 
                             <div className="relative">
                                 <input
+                                    {...register('password')}
                                     type={showPassword ? 'text' : 'password'}
                                     className="mt-1 w-full p-3 border border-gray-300 rounded-xl focus:bg-black text-black focus:text-white focus:outline-none focus:ring-2 focus:ring-[#FF02CB]"
                                     placeholder="••••••••"
@@ -90,6 +113,7 @@ const SignUp = () => {
                             </label>
                             <div className="relative">
                                 <input
+                                    {...register('confirmPassword', { validate: value => value === password || "Passwords do not match" })}
                                     type={showConfirmPassword ? 'text' : 'password'}
                                     className={`mt-1 w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF02CB]`}
                                     placeholder="••••••••"

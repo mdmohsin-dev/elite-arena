@@ -3,10 +3,14 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Bounce, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from "../hooks/useAuth";
+import LoadingSpinner from "../pages/LoadingSpinner";
 
 const Main = () => {
 
-    <ToastContainer
+    const { loading } = useAuth();
+
+    < ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -19,6 +23,10 @@ const Main = () => {
         theme="light"
         transition={Bounce}
     />
+
+    if(loading){
+        return <LoadingSpinner></LoadingSpinner>
+    }
 
     return (
         <div className="bg-[#E0DACE]">

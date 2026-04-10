@@ -12,6 +12,12 @@ const DashboardLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const sidebarRef = useRef(null);
 
+    const links = [
+        { name: "My Profile", path: "/dashboard/profile" },
+        { name: "My Bookings", path: "/dashboard/bookings" },
+        // { name: "Announcement", path: "/dashboard/announcement" },
+    ];
+
     // Close sidebar on mobile after clicking a link
     const handleMobileNavClick = () => {
         if (window.innerWidth < 768) setSidebarOpen(false);
@@ -32,20 +38,6 @@ const DashboardLayout = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [sidebarOpen]);
-
-    // Get User By Email
-    //   const { data: userData, isLoading, error } = useUserData();
-
-    //   const role = userData?.role;
-
-    //   if (isLoading) return <Loader />;
-
-    //   if (error)
-    //     return (
-    //       <div className="flex items-center justify-center min-h-screen">
-    //         <p className="text-red-600">Failed to load user data.</p>
-    //       </div>
-    //     );
 
     return (
         <div className="min-h-screen flex flex-col md:flex-row bg-[#EFEAE6] dashboard-layout">
@@ -69,9 +61,9 @@ const DashboardLayout = () => {
             {/* Sidebar */}
             <aside
                 ref={sidebarRef}
-                className={`bg-white p-6 space-y-6 fixed z-30 w-[290px] lg:w-80
+                className={`bg-white space-y-6 fixed z-30 w-72 lg:w-80
           transition-all duration-300 ease-in-out
-          h-[calc(100vh-72px)] top-[72px]
+          h-[calc(100vh-72px)] top-18
           md:h-screen md:top-0
           ${sidebarOpen
                         ? "left-0 translate-x-0 bg-white/60 backdrop-blur-md"
@@ -91,9 +83,22 @@ const DashboardLayout = () => {
                 </Link>
 
                 {/* Sidebar Navigation */}
-                <ul className="flex flex-col gap-5 my-18 md:my-32 lg:my-20 text-left text-black">
-                    <li className="text-lg font-semibold"><NavLink  onClick={()=>setSidebarOpen(false)}
-                     to="/dashboard/bookings">My booking</NavLink></li>
+
+                <ul className="flex flex-col w-full gap-2 my-20 text-left text-black">
+                    {links.map(link => (
+                        <li key={link.path}>
+                            <NavLink
+                                to={link.path}
+                                onClick={() => setSidebarOpen(false)}
+                                className={({ isActive }) =>
+                                    `block w-full px-5 py-2 font-semibold text-lg transition ${isActive ? "bg-[#FF02CB] text-white" : "hover:bg-gray-200"
+                                    }`
+                                }
+                            >
+                                {link.name}
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
 
                 <Link to="/"

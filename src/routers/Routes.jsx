@@ -7,10 +7,14 @@ import Bookings from "../pages/Booking/Bookings";
 import DashboardHome from "../pages/Dashboard/DashboardHome";
 import Login from "../pages/Authentication/Login";
 import SignUp from "../pages/Authentication/SignUp";
+import ErrorPage from "../pages/ErrorPage";
+import PrivetRoute from "./PrivetRoute";
+import Profile from "../pages/Dashboard/Profile";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage></ErrorPage>,
     element: <Main></Main>,
     children: [
       {
@@ -33,11 +37,15 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
     children: [
       { index: true, Component: DashboardHome },
       {
-        path: "/dashboard/bookings",
+        path:"profile",
+        element:<Profile></Profile>
+      },
+      {
+        path: "bookings",
         element: <Bookings></Bookings>
       }
     ]

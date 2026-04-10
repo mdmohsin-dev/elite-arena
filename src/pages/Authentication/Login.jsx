@@ -1,11 +1,31 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock, FaUserCircle } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import GoogleLogin from '../../components/GoogleLogin';
+import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+
+    const { loginUser } = useContext(AuthContext)
+
+    const { handleSubmit, register } = useForm()
+
+    const navigate = useNavigate()
+
+    const onSubmit = (data) => {
+        const { email, password } = data
+        loginUser(email, password)
+        .then(result =>{
+            console.log(result.user)
+            navigate("/")
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    }
 
     return (
         <div className="min-h-screen bg-linear-to-t from-black text-white flex items-center justify-center">
@@ -27,7 +47,8 @@ const Login = () => {
                         <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mt-2">Welcome Back</h2>
                     </div>
 
-                    <form className="space-y-4">
+                    <form onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-4">
                         <div>
                             <label className="text-sm md:text-lg font-medium text-gray-700 flex items-center gap-2">
                                 <FaEnvelope className="text-[#FF02CB] text-lg" />
@@ -35,7 +56,7 @@ const Login = () => {
                             </label>
                             <input
                                 type="email"
-
+                                {...register('email')}
                                 className="mt-1 w-full p-3 border border-gray-300 rounded-xl focus:bg-black text-black focus:text-white focus:outline-none focus:ring-2 focus:ring-[#FF02CB]"
                                 placeholder="you@example.com"
                                 required
@@ -52,6 +73,7 @@ const Login = () => {
 
                             <div className="relative">
                                 <input
+                                    {...register('password')}
                                     type={showPassword ? 'text' : 'password'}
                                     className="mt-1 w-full p-3 border border-gray-300 rounded-xl focus:bg-black text-black focus:text-white focus:outline-none focus:ring-2 focus:ring-[#FF02CB]"
                                     placeholder="••••••••"

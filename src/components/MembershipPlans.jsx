@@ -22,6 +22,7 @@ const plans = [
         dividerStyle: "bg-gray-200",
         featureStyle: "text-gray-500",
         featured: false,
+        buttonText:'Get started'
     },
     {
         name: "Pro",
@@ -48,6 +49,7 @@ const plans = [
         featureStyle: "text-white/90",
         featured: true,
         popularTag: "Most popular",
+        buttonText:'Upgrade now'
     },
     {
         name: "Elite",
@@ -70,6 +72,7 @@ const plans = [
         dividerStyle: "bg-gray-200",
         featureStyle: "text-gray-500",
         featured: false,
+        buttonText:'Go elite'
     },
 ];
 
@@ -123,7 +126,7 @@ export default function MembershipPlans() {
                                             }`}
                                     >
                                         <span
-                                            className={`w-[18px] h-[18px] rounded-full flex items-center justify-center text-[10px] shrink-0 ${feature.included
+                                            className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0 ${feature.included
                                                     ? plan.checkStyle
                                                     : plan.featured
                                                         ? "bg-white/15 text-white/50"
@@ -140,7 +143,7 @@ export default function MembershipPlans() {
                             <button
                                 className={`mt-auto w-full py-2.5 rounded-xl text-sm font-medium transition-colors duration-150 cursor-pointer ${plan.btnStyle}`}
                             >
-                                Get started
+                                {plan.buttonText}
                             </button>
                         </div>
                     ))}

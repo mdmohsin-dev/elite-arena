@@ -31,11 +31,11 @@ console.log(booking.slot)
                   Booked at: {new Date(booking.bookedAt).toLocaleString()}
                 </p>
 
-                <button
+                {/* <button
                   onClick={() => openModal(booking._id)}
                   className="mt-4 px-4 py-2 bg-red-600 hover:bg-black hover:scale-110 transition-all duration-300 cursor-pointer text-white rounded-lg">
                     Cancel booking
-                </button>
+                </button> */}
               </div>
       </div>
   );

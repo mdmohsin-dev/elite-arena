@@ -21,7 +21,7 @@ const Bookings = () => {
 
     return (
         <div className="text-black pt-5">
-            <h3 className="text-6xl font-bold text-center font-exo">My Bookings</h3>
+            <h3 className="md:text-6xl text-3xl font-bold text-center font-exo">My Bookings</h3>
             <div>
                 {findBookings.map(booking => <Booking booking={booking}></Booking>)}
             </div>

@@ -3,7 +3,7 @@ import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/images/logo.png"
 import { AuthContext } from "../providers/AuthProvider";
-import userLogo from "../assets/images/user.png"
+import userLogo from "../assets/images/user.jpg"
 import Swal from "sweetalert2";
 
 export default function Navbar() {
@@ -13,7 +13,6 @@ export default function Navbar() {
   const sidebarRef = useRef(null);
 
   const { user, logout } = useContext(AuthContext)
-  console.log(user)
 
   const navLinks = <>
     <li><NavLink to="/">Home</NavLink></li>
@@ -119,7 +118,7 @@ export default function Navbar() {
                       <div className="relative">
                         <img
                           onClick={() => setOpen(!open)}
-                          className="w-12 h-12 rounded-full border cursor-pointer"
+                          className="w-12 h-12 object-cover rounded-full border cursor-pointer"
                           src={user?.photoURL || userLogo}
                           alt=""
                         />

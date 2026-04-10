@@ -35,11 +35,3 @@
 .swiper-slide {
   height: auto !important;
 }
-
-.dashboard-layout .active{
-  background-color: #FF02CB;
-  padding: 6px 16px;    
-  border-radius: 6px;
-  color: white;
-  box-sizing: border-box;
-}
