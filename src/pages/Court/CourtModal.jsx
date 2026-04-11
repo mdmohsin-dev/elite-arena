@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router';
 
 const CourtModal = () => {
 
-    const { showModal, setShowModal, selectedCourt, courts, selectedSlot, setSelectDate } = useContext(CourtsContext)
-    console.log(selectedSlot)
+    const { showModal, setShowModal, selectedCourt, courts, selectedSlot, setSelectDate,setBookings } = useContext(CourtsContext)
+    
 
     const findSelectedCourt = courts.find(court => court.id === selectedCourt)
 
@@ -29,6 +29,7 @@ const CourtModal = () => {
 
 
     const handleConfirmBooking = async () => {
+
         if (!date) {
             toast.error('Choose a date', {
                 position: "top-center",
@@ -45,6 +46,7 @@ const CourtModal = () => {
         }
 
         saveCourt(bookingData)
+        setBookings(prev => [... prev ,bookingData])
 
 
       await  Swal.fire({

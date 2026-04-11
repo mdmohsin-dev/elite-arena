@@ -2,14 +2,27 @@ import { useContext, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { CourtsContext } from '../../providers/CourtsProvider';
 import { Bounce, toast } from 'react-toastify';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Court = ({ court }) => {
     const { court_name, image, price, id, slots } = court;
     const { setShowModal, setSelectedCourt, setSelectedSlot } = useContext(CourtsContext)
+    const { user } = useAuth()
 
     const [slot, setSlot] = useState("")
 
     const clickBooking = () => {
+
+        if (!user) {
+            Swal.fire({
+                icon: "warning",
+                title: "You're not logged in",
+                text: "Please login to book a court",
+            });
+            return
+        }
+
         if (slot == '') {
             toast.error('Choose a slot', {
                 position: "top-center",
@@ -26,7 +39,7 @@ const Court = ({ court }) => {
         }
         else {
             setSelectedSlot(slot)
-            
+
         }
         setShowModal(true)
         setSelectedCourt(id)
@@ -60,10 +73,10 @@ const Court = ({ court }) => {
                     </select>
 
                 </div>
-                    <button onClick={clickBooking}
-                        className="btn rounded-md bg-red-500 border-none flex gap-4 text-lg py-6 px-6 font-exo hover:bg-black transition-all duration-500 hover:rounded-3xl">
-                        Book now <FaArrowRight />
-                    </button>
+                <button onClick={clickBooking}
+                    className="btn rounded-md bg-red-500 border-none flex gap-4 text-lg py-6 px-6 font-exo hover:bg-black transition-all duration-500 hover:rounded-3xl">
+                    Book now <FaArrowRight />
+                </button>
             </div>
         </div>
     );

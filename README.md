@@ -9,8 +9,6 @@ Elite Arena is a modern sports club booking platform where users can easily rese
 - 📅 Time-based Court Booking System
 - 💳 Dynamic Pricing based on slot duration
 - 📖 View Booking History
-- ❌ Cancel Bookings anytime
-- 🛠️ Admin Control Panel
   - Manage courts
   - Monitor bookings
 - ⚡ Fast and responsive UI
